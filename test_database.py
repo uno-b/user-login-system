@@ -9,6 +9,18 @@ class TestUser(unittest.TestCase):
     def setUp(self):
         self.a_user = user.User("Test123", "test1234", "test@test.edu", "11111111")
 
+    def test_check_if_user_exists(self):
+        self.assertFalse(database.check_if_user_exists(self.a_user))
+        database.add_user(self.a_user)
+        self.assertTrue(database.check_if_user_exists(self.a_user))
+        database.delete_user(self.a_user.get_username())
+
+    def test_check_if_note_exists(self):
+        self.assertFalse(database.check_if_note_exists("101a"))
+        database.add_note("101a", "Test", self.a_user.get_username())
+        self.assertTrue(database.check_if_note_exists("101a"))
+        database.delete_note("101a")
+
     def test_add_user(self):
         self.assertFalse(database.check_if_user_exists(self.a_user))
         database.add_user(self.a_user)
@@ -66,3 +78,7 @@ class TestUser(unittest.TestCase):
         self.assertEqual(result[3], "11111111")
 
         database.delete_user(self.a_user.get_username())
+
+
+if __name__ == '__main__':
+    unittest.main()

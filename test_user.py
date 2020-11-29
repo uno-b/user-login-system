@@ -1,4 +1,5 @@
 import unittest
+
 import user
 
 
@@ -38,6 +39,8 @@ class TestUser(unittest.TestCase):
         self.assertEqual(self.a_user.get_phone_number(), "99674769")
         self.a_user.set_phone_number("99674770")
         self.assertEqual(self.a_user.get_phone_number(), "99674770")
+        self.a_user.set_phone_number("")
+        self.assertEqual(self.a_user.get_phone_number(), "")
 
     def test_set_username_wrong(self):
         self.assertRaises(ValueError, self.a_user.set_username, "man")
@@ -59,3 +62,7 @@ class TestUser(unittest.TestCase):
         self.assertRaises(ValueError, self.a_user.set_phone_number, "12345678910")
         self.assertRaises(ValueError, self.a_user.set_phone_number, "SomeText")
         self.assertRaises(ValueError, self.a_user.set_phone_number, "1234")
+
+
+if __name__ == '__main__':
+    unittest.main()

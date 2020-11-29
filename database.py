@@ -119,20 +119,6 @@ def get_user_data(username):
 # Following functions are for testing purposes
 
 
-def check_tables():
-    conn = sqlite3.connect("user_info.db")
-    cursor = conn.cursor()
-
-    cursor.execute("SELECT * FROM users")
-    print(cursor.fetchall())
-
-    cursor.execute("SELECT * FROM notes")
-    print(cursor.fetchall())
-
-    conn.commit()
-    conn.close()
-
-
 def check_if_user_exists(user):
     conn = sqlite3.connect("user_info.db")
     cursor = conn.cursor()
@@ -163,3 +149,17 @@ def check_if_note_exists(note_id):
         return False
     else:
         return True
+
+
+def check_tables():
+    conn = sqlite3.connect("user_info.db")
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM users")
+    print(cursor.fetchall())
+
+    cursor.execute("SELECT * FROM notes")
+    print(cursor.fetchall())
+
+    conn.commit()
+    conn.close()
